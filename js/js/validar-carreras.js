@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorGrado = document.getElementById("errorGrado");
     const errorCreditos = document.getElementById("errorCreditos");
 
-    const regexNombre = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{5,60}$/;
-    const regexCodigo = /^[A-Z]{4}-\d{3}$/;
+    const regexNombre =
+        /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{5,60}$/;
+
+    const regexCodigo =
+        /^[A-Z]{4}-\d{3}$/;
+
+    // Clave que se utilizará para guardar las carreras.
     const CLAVE_CARRERAS = "carreras";
 
     formulario.addEventListener("submit", function (evento) {
@@ -23,9 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
         limpiarErrores();
 
         let valido = true;
-        const cantidadCreditos = Number(creditos.value);
 
-        // Validación del nombre de la carrera
+        const cantidadCreditos =
+            Number(creditos.value);
+
+        const codigoNormalizado =
+            codigo.value.trim().toUpperCase();
+
+        // Validación del nombre
         if (nombre.value.trim() === "") {
 
             mostrarError(
@@ -36,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             valido = false;
 
-        } else if (!regexNombre.test(nombre.value.trim())) {
+        } else if (
+            !regexNombre.test(nombre.value.trim())
+        ) {
 
             mostrarError(
                 nombre,
@@ -48,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Validación del código
-        if (codigo.value.trim() === "") {
+        if (codigoNormalizado === "") {
 
             mostrarError(
                 codigo,
@@ -58,12 +70,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             valido = false;
 
-        } else if (!regexCodigo.test(codigo.value.trim())) {
+        } else if (
+            !regexCodigo.test(codigoNormalizado)
+        ) {
 
             mostrarError(
                 codigo,
                 errorCodigo,
-                "Formato inválido. Utilice cuatro letras mayúsculas, un guion y tres números. Ejemplo: ISOF-101."
+                "Formato inválido. Ejemplo: ISOF-101."
             );
 
             valido = false;
@@ -81,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             valido = false;
         }
 
-        // Validación de la cantidad de créditos
+        // Validación de los créditos
         if (creditos.value.trim() === "") {
 
             mostrarError(
@@ -107,56 +121,133 @@ document.addEventListener("DOMContentLoaded", function () {
             valido = false;
         }
 
-        // Confirmación cuando todos los datos son válidos
         if (valido) {
 
-           const carrera = crearobjetoCarrera();
-           
-           console.log("Carrera creada:", carrera);
-        
-           
+            const carrera =
+                crearObjetoCarrera();
+
+            console.log(
+                "Objeto carrera creado:",
+                carrera
+            );
+
+            console.log(
+                "Carreras existentes:",
+                obtenerCarreras()
+            );
+
             alert(
-                "Los datos fueron validados correctamente y están listos para almacenarse."
+                "El objeto carrera fue creado correctamente."
             );
         }
 
     });
 
-    function crearobjetoCarrera() {
+    function crearObjetoCarrera() {
 
         return {
-            nombre: nombre.value.trim(),;
-            codigo: codigo.value.trim() .toUpperCase(), 
-            grado: grado.value,
-            creditos: Number(creditos.value) 
-            fechaRegistro: new Date().toISOString()
 
-        }; 
+            id: Date.now(),
 
-    }   
+            nombre:
+                nombre.value.trim(),
 
-    function mostrarError(campo, elementoError, mensaje) {
+            codigo:
+                codigo.value.trim().toUpperCase(),
 
-        elementoError.textContent = mensaje;
-        campo.classList.add("input-con-error");
-        campo.setAttribute("aria-invalid", "true");
+            grado:
+                grado.value,
+
+            creditos:
+                Number(creditos.value),
+
+            fechaRegistro:
+                new Date().toISOString()
+
+        };
     }
 
-    function limpiarError(campo, elementoError) {
+    // Recupera el arreglo de carreras de Local Storage.
+    function obtenerCarreras() {
+
+        const registros =
+            localStorage.getItem(CLAVE_CARRERAS);
+
+        // Si todavía no existen registros,
+        // devuelve un arreglo vacío.
+        if (registros === null) {
+
+            return [];
+        }
+
+        const carreras =
+            JSON.parse(registros);
+
+        // Verifica que lo recuperado sea un arreglo.
+        if (Array.isArray(carreras)) {
+
+            return carreras;
+        }
+
+        return [];
+    }
+
+    function mostrarError(
+        campo,
+        elementoError,
+        mensaje
+    ) {
+
+        elementoError.textContent =
+            mensaje;
+
+        campo.classList.add(
+            "input-con-error"
+        );
+
+        campo.setAttribute(
+            "aria-invalid",
+            "true"
+        );
+    }
+
+    function limpiarError(
+        campo,
+        elementoError
+    ) {
 
         elementoError.textContent = "";
-        campo.classList.remove("input-con-error");
-        campo.removeAttribute("aria-invalid");
+
+        campo.classList.remove(
+            "input-con-error"
+        );
+
+        campo.removeAttribute(
+            "aria-invalid"
+        );
     }
 
     function limpiarErrores() {
 
-        limpiarError(nombre, errorNombre);
-        limpiarError(codigo, errorCodigo);
-        limpiarError(grado, errorGrado);
-        limpiarError(creditos, errorCreditos);
+        limpiarError(
+            nombre,
+            errorNombre
+        );
+
+        limpiarError(
+            codigo,
+            errorCodigo
+        );
+
+        limpiarError(
+            grado,
+            errorGrado
+        );
+
+        limpiarError(
+            creditos,
+            errorCreditos
+        );
     }
-
-
 
 });
