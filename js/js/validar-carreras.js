@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const regexNombre = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{5,60}$/;
     const regexCodigo = /^[A-Z]{4}-\d{3}$/;
+    const CLAVE_CARRERAS = "carreras";
 
     formulario.addEventListener("submit", function (evento) {
 
