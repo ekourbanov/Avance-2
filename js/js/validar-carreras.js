@@ -118,9 +118,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function crearobjetoCarrera() {
 
-        return {}; 
+        return {
+            nombre: nombre.value.trim(),;
+            codigo: codigo.value.trim(), 
+            
+        }; 
 
-    }
+    }   
 
     function mostrarError(campo, elementoError, mensaje) {
 
