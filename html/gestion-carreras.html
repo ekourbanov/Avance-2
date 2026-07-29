@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestión de Carreras - Universidad CENFOTEC</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+<header class="header-sistema">
+
+    <div class="contenedor-header">
+
+        <h1>Universidad CENFOTEC</h1>
+
+        <p class="subtitulo-modulo">
+
+            Sistema de Gestión de Egresados
+
+        </p>
+
+    </div>
+
+    <nav class="navegacion-principal">
+
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="gestion-egresados.html">Egresados</a>
+        <a href="gestion-titulos.html">Títulos</a>
+        <a href="gestion-carreras.html" class="enlace-activo">Carreras</a>
+        <a href="gestion-empleos.html">Empleos</a>
+        <a href="index-publico.html">Página Pública</a>
+
+    </nav>
+
+</header>
+
+<main class="contenedor-principal">
+
+<section class="seccion-formulario">
+
+<div class="encabezado-formulario">
+
+<h2>
+
+Registrar Nueva Carrera
+
+</h2>
+
+<p>
+
+Complete la información para registrar una nueva carrera en el sistema.
+
+</p>
+
+</div>
+
+<form id="formCarrera" class="formulario-control" novalidate>
+
+<div class="grupo-formulario">
+
+<label for="nombreCarrera">
+
+Nombre de la Carrera
+
+</label>
+
+<input
+type="text"
+id="nombreCarrera"
+name="nombreCarrera"
+placeholder="Ej: Ingeniería del Software">
+
+<span id="errorNombre" class="mensaje-error"></span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="codigoCarrera">
+
+Código
+
+</label>
+
+<input
+type="text"
+id="codigoCarrera"
+name="codigoCarrera"
+placeholder="Ej: ISOF-101">
+
+<small>
+
+Formato: 4 letras, guion y 3 números.
+
+</small>
+
+<span id="errorCodigo" class="mensaje-error"></span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="gradoAcademico">
+
+Grado Académico
+
+</label>
+
+<select
+id="gradoAcademico"
+name="gradoAcademico">
+
+<option value="">
+
+Seleccione una opción
+
+</option>
+
+<option>
+
+Técnico
+
+</option>
+
+<option>
+
+Diplomado
+
+</option>
+
+<option>
+
+Bachillerato
+
+</option>
+
+<option>
+
+Licenciatura
+
+</option>
+
+</select>
+
+<span id="errorGrado" class="mensaje-error"></span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="creditosCarrera">
+
+Cantidad de Créditos
+
+</label>
+
+<input
+type="number"
+id="creditosCarrera"
+name="creditosCarrera"
+placeholder="Ej: 8">
+
+<span id="errorCreditos" class="mensaje-error"></span>
+
+</div>
+
+<div class="acciones-formulario">
+
+<button
+type="submit"
+class="boton-guardar">
+
+Registrar Carrera
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<section class="tabla-registros">
+
+<h2>
+
+Carreras Registradas
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Código</th>
+
+<th>Carrera</th>
+
+<th>Grado</th>
+
+<th>Créditos</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>ISOF-101</td>
+
+<td>Ingeniería del Software</td>
+
+<td>Bachillerato</td>
+
+<td>8</td>
+
+</tr>
+
+<tr>
+
+<td>CIBE-102</td>
+
+<td>Ciberseguridad</td>
+
+<td>Licenciatura</td>
+
+<td>10</td>
+
+</tr>
+
+<tr>
+
+<td>ADMI-103</td>
+
+<td>Administración</td>
+
+<td>Bachillerato</td>
+
+<td>8</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer class="pie-sistema">
+
+<p>
+
+&copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+</p>
+
+</footer>
+
+<script src="js/validar-carreras.js"></script>
+
+</body>
+
+</html>

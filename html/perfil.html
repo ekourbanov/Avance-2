@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Egresado - Sistema de Gestión de Egresados</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <header class="header-sistema">
+
+        <div class="contenedor-header">
+            <h1>Universidad CENFOTEC</h1>
+            <p class="subtitulo-modulo">
+                Sistema de Gestión de Egresados
+            </p>
+        </div>
+
+        <nav class="navegacion-principal">
+
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html" class="enlace-activo">Mi Perfil</a>
+            <a href="gestion-empleos.html">Empleos</a>
+            <a href="index-publico.html">Página Pública</a>
+            <a href="login.html">Cerrar Sesión</a>
+
+        </nav>
+
+    </header>
+
+    <main class="contenedor-principal">
+
+        <section class="seccion-formulario">
+
+            <div class="encabezado-formulario">
+
+                <h2>Perfil del Egresado</h2>
+
+                <p>
+                    Actualice su información personal y profesional.
+                </p>
+
+            </div>
+
+            <form id="formPerfil" class="formulario-control">
+
+                <div class="grupo-formulario">
+
+                    <label for="nombre">
+                        Nombre Completo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        placeholder="Ingrese su nombre completo">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="correo">
+                        Correo Electrónico
+                    </label>
+
+                    <input
+                        type="email"
+                        id="correo"
+                        placeholder="correo@correo.com">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefono"
+                        placeholder="8888-8888">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="direccion">
+                        Dirección
+                    </label>
+
+                    <input
+                        type="text"
+                        id="direccion"
+                        placeholder="Ingrese su dirección">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="carrera">
+                        Carrera
+                    </label>
+
+                    <select id="carrera">
+
+                        <option>Seleccione una carrera</option>
+
+                        <option>Ingeniería del Software</option>
+
+                        <option>Ciberseguridad</option>
+
+                        <option>Diseño Web</option>
+
+                        <option>Administración</option>
+
+                    </select>
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="empresa">
+                        Empresa Actual
+                    </label>
+
+                    <input
+                        type="text"
+                        id="empresa"
+                        placeholder="Nombre de la empresa">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="puesto">
+                        Puesto
+                    </label>
+
+                    <input
+                        type="text"
+                        id="puesto"
+                        placeholder="Puesto actual">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="descripcion">
+
+                        Descripción Profesional
+
+                    </label>
+
+                    <textarea
+                        id="descripcion"
+                        rows="5"
+                        placeholder="Describa brevemente su experiencia profesional"></textarea>
+
+                </div>
+
+                <div class="acciones-formulario">
+
+                    <button
+                        type="submit"
+                        class="boton-guardar">
+
+                        Guardar Información
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer class="pie-sistema">
+
+        <p>
+
+            &copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+        </p>
+
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

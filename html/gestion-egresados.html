@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Egresados - Universidad CENFOTEC</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<header class="header-sistema">
+
+    <div class="contenedor-header">
+        <h1>Universidad CENFOTEC</h1>
+        <p class="subtitulo-modulo">Sistema de Gestión de Egresados</p>
+    </div>
+
+    <nav class="navegacion-principal">
+
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="gestion-egresados.html" class="enlace-activo">Egresados</a>
+        <a href="gestion-titulos.html">Títulos</a>
+        <a href="gestion-carreras.html">Carreras</a>
+        <a href="gestion-empleos.html">Empleos</a>
+        <a href="index-publico.html">Página Pública</a>
+
+    </nav>
+
+</header>
+
+<main class="contenedor-principal">
+
+<section class="seccion-formulario">
+
+<div class="encabezado-formulario">
+
+<h2>Registro de Egresados</h2>
+
+<p>
+
+Administre la información de los egresados registrados en el sistema.
+
+</p>
+
+</div>
+
+<form id="formEgresado" class="formulario-control">
+
+<div class="grupo-formulario">
+
+<label for="cedula">
+
+Cédula
+
+</label>
+
+<input
+type="text"
+id="cedula"
+placeholder="Ej: 1-2345-6789">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="nombre">
+
+Nombre Completo
+
+</label>
+
+<input
+type="text"
+id="nombre"
+placeholder="Nombre del egresado">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="correo">
+
+Correo Electrónico
+
+</label>
+
+<input
+type="email"
+id="correo"
+placeholder="correo@correo.com">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="telefono">
+
+Teléfono
+
+</label>
+
+<input
+type="tel"
+id="telefono"
+placeholder="8888-8888">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="fecha">
+
+Fecha de Graduación
+
+</label>
+
+<input
+type="date"
+id="fecha">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="estado">
+
+Estado
+
+</label>
+
+<select id="estado">
+
+<option>Activo</option>
+
+<option>Inactivo</option>
+
+</select>
+
+</div>
+
+<div class="acciones-formulario">
+
+<button
+type="submit"
+class="boton-guardar">
+
+Guardar Egresado
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<section class="tabla-registros">
+
+<h2>
+
+Listado de Egresados
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Cédula</th>
+
+<th>Nombre</th>
+
+<th>Correo</th>
+
+<th>Teléfono</th>
+
+<th>Estado</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1-1234-5678</td>
+
+<td>Juan Pérez</td>
+
+<td>juan@gmail.com</td>
+
+<td>8888-8888</td>
+
+<td>Activo</td>
+
+</tr>
+
+<tr>
+
+<td>2-3456-7890</td>
+
+<td>María Rodríguez</td>
+
+<td>maria@gmail.com</td>
+
+<td>8777-7777</td>
+
+<td>Activo</td>
+
+</tr>
+
+<tr>
+
+<td>3-4567-8912</td>
+
+<td>Carlos Gómez</td>
+
+<td>carlos@gmail.com</td>
+
+<td>8666-6666</td>
+
+<td>Inactivo</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer class="pie-sistema">
+
+<p>
+
+&copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+</p>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inicio de Sesión - Sistema de Gestión de Egresados</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+<header class="header-sistema">
+
+    <div class="contenedor-header">
+
+        <h1>Universidad CENFOTEC</h1>
+
+        <p class="subtitulo-modulo">
+
+            Sistema de Gestión de Egresados
+
+        </p>
+
+    </div>
+
+    <nav class="navegacion-principal">
+
+        <a href="index.html">Inicio</a>
+
+        <a href="login.html" class="enlace-activo">Iniciar Sesión</a>
+
+        <a href="index-publico.html">Página Pública</a>
+
+    </nav>
+
+</header>
+
+<main class="contenedor-principal">
+
+<section class="seccion-formulario">
+
+<div class="encabezado-formulario">
+
+<h2>Inicio de Sesión</h2>
+
+<p>
+
+Ingrese sus credenciales para acceder al sistema.
+
+</p>
+
+</div>
+
+<form id="formLogin" class="formulario-control" novalidate>
+
+<div class="grupo-formulario">
+
+<label for="correo">
+
+Correo Electrónico
+
+</label>
+
+<input
+type="email"
+id="correo"
+name="correo"
+placeholder="ejemplo@correo.com">
+
+<span
+id="errorCorreo"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="password">
+
+Contraseña
+
+</label>
+
+<input
+type="password"
+id="password"
+name="password"
+placeholder="Ingrese su contraseña">
+
+<span
+id="errorPassword"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario checkbox">
+
+<input
+type="checkbox"
+id="recordarme">
+
+<label for="recordarme">
+
+Recordarme
+
+</label>
+
+</div>
+
+<div class="acciones-formulario">
+
+<button
+type="submit"
+class="boton-guardar">
+
+Ingresar
+
+</button>
+
+</div>
+
+<div class="links-login">
+
+<a href="#">
+
+¿Olvidó su contraseña?
+
+</a>
+
+<br><br>
+
+<a href="index.html">
+
+Volver al Inicio
+
+</a>
+
+</div>
+
+</form>
+
+</section>
+
+</main>
+
+<footer class="pie-sistema">
+
+<p>
+
+&copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+</p>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>

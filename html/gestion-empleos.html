@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestión de Empleos - Universidad CENFOTEC</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+<header class="header-sistema">
+
+    <div class="contenedor-header">
+
+        <h1>Universidad CENFOTEC</h1>
+
+        <p class="subtitulo-modulo">
+
+            Sistema de Gestión de Egresados
+
+        </p>
+
+    </div>
+
+    <nav class="navegacion-principal">
+
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="gestion-egresados.html">Egresados</a>
+        <a href="gestion-titulos.html">Títulos</a>
+        <a href="gestion-carreras.html">Carreras</a>
+        <a href="gestion-empleos.html" class="enlace-activo">Empleos</a>
+        <a href="index-publico.html">Página Pública</a>
+
+    </nav>
+
+</header>
+
+<main class="contenedor-principal">
+
+<section class="seccion-formulario">
+
+<div class="encabezado-formulario">
+
+<h2>
+
+Publicar Oportunidad Laboral
+
+</h2>
+
+<p>
+
+Complete el siguiente formulario para registrar una nueva oferta laboral.
+
+</p>
+
+</div>
+
+<form id="formEmpleo" class="formulario-control" novalidate>
+
+<div class="grupo-formulario">
+
+<label for="puesto">
+
+Título del Puesto
+
+</label>
+
+<input
+type="text"
+id="puesto"
+name="puesto"
+placeholder="Ej: Desarrollador Web">
+
+<span
+id="errorPuesto"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="empresa">
+
+Empresa
+
+</label>
+
+<input
+type="text"
+id="empresa"
+name="empresa"
+placeholder="Nombre de la empresa">
+
+<span
+id="errorEmpresa"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="salario">
+
+Salario Mensual (CRC)
+
+</label>
+
+<input
+type="text"
+id="salario"
+name="salario"
+placeholder="Ej: 850000">
+
+<small>
+
+Ingrese únicamente números.
+
+</small>
+
+<span
+id="errorSalario"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="correo">
+
+Correo de Contacto
+
+</label>
+
+<input
+type="email"
+id="correo"
+name="correo"
+placeholder="empresa@correo.com">
+
+<span
+id="errorCorreo"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="telefono">
+
+Teléfono
+
+</label>
+
+<input
+type="tel"
+id="telefono"
+name="telefono"
+placeholder="8888-8888">
+
+<span
+id="errorTelefono"
+class="mensaje-error">
+
+</span>
+
+</div>
+
+<div class="acciones-formulario">
+
+<button
+type="submit"
+class="boton-guardar">
+
+Publicar Oferta
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<section class="tabla-registros">
+
+<h2>
+
+Ofertas Publicadas
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Puesto</th>
+
+<th>Empresa</th>
+
+<th>Salario</th>
+
+<th>Correo</th>
+
+<th>Teléfono</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Desarrollador Web</td>
+
+<td>Tech Solutions S.A.</td>
+
+<td>₡900 000</td>
+
+<td>rrhh@tech.com</td>
+
+<td>8888-8888</td>
+
+</tr>
+
+<tr>
+
+<td>Analista de Sistemas</td>
+
+<td>Grupo Nova</td>
+
+<td>₡1 100 000</td>
+
+<td>empleos@nova.com</td>
+
+<td>8700-4500</td>
+
+</tr>
+
+<tr>
+
+<td>Soporte Técnico</td>
+
+<td>Innovate CR</td>
+
+<td>₡780 000</td>
+
+<td>talento@innovate.com</td>
+
+<td>6000-1122</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer class="pie-sistema">
+
+<p>
+
+&copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+</p>
+
+</footer>
+
+<script src="js/validar-empleos.js"></script>
+
+</body>
+
+</html>

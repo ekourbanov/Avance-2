@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Títulos - Universidad CENFOTEC</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<header class="header-sistema">
+
+    <div class="contenedor-header">
+        <h1>Universidad CENFOTEC</h1>
+        <p class="subtitulo-modulo">
+            Sistema de Gestión de Egresados
+        </p>
+    </div>
+
+    <nav class="navegacion-principal">
+
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="gestion-egresados.html">Egresados</a>
+        <a href="gestion-titulos.html" class="enlace-activo">Títulos</a>
+        <a href="gestion-carreras.html">Carreras</a>
+        <a href="gestion-empleos.html">Empleos</a>
+        <a href="index-publico.html">Página Pública</a>
+
+    </nav>
+
+</header>
+
+<main class="contenedor-principal">
+
+<section class="seccion-formulario">
+
+<div class="encabezado-formulario">
+
+<h2>Registro de Títulos</h2>
+
+<p>
+
+Complete la información para registrar un nuevo título académico.
+
+</p>
+
+</div>
+
+<form id="formTitulo" class="formulario-control">
+
+<div class="grupo-formulario">
+
+<label for="titulo">
+
+Nombre del Título
+
+</label>
+
+<input
+type="text"
+id="titulo"
+placeholder="Ej: Bachillerato en Ingeniería del Software">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="codigo">
+
+Código del Título
+
+</label>
+
+<input
+type="text"
+id="codigo"
+placeholder="Ej: TIS-001">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="carrera">
+
+Carrera Asociada
+
+</label>
+
+<select id="carrera">
+
+<option>Seleccione una carrera</option>
+
+<option>Ingeniería del Software</option>
+
+<option>Ciberseguridad</option>
+
+<option>Administración</option>
+
+<option>Diseño Web</option>
+
+</select>
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="fecha">
+
+Fecha de Emisión
+
+</label>
+
+<input
+type="date"
+id="fecha">
+
+</div>
+
+<div class="grupo-formulario">
+
+<label for="modalidad">
+
+Modalidad
+
+</label>
+
+<select id="modalidad">
+
+<option>Presencial</option>
+
+<option>Virtual</option>
+
+<option>Híbrida</option>
+
+</select>
+
+</div>
+
+<div class="acciones-formulario">
+
+<button
+type="submit"
+class="boton-guardar">
+
+Registrar Título
+
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+<section class="tabla-registros">
+
+<h2>
+
+Títulos Registrados
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Código</th>
+
+<th>Título</th>
+
+<th>Carrera</th>
+
+<th>Fecha</th>
+
+<th>Modalidad</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>TIS-001</td>
+
+<td>Bachillerato Ingeniería del Software</td>
+
+<td>Ingeniería del Software</td>
+
+<td>15/03/2026</td>
+
+<td>Presencial</td>
+
+</tr>
+
+<tr>
+
+<td>ADM-002</td>
+
+<td>Bachillerato en Administración</td>
+
+<td>Administración</td>
+
+<td>20/06/2026</td>
+
+<td>Virtual</td>
+
+</tr>
+
+<tr>
+
+<td>CYB-003</td>
+
+<td>Licenciatura en Ciberseguridad</td>
+
+<td>Ciberseguridad</td>
+
+<td>10/08/2026</td>
+
+<td>Híbrida</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<footer class="pie-sistema">
+
+<p>
+
+&copy; 2026 Universidad CENFOTEC - Sistema de Gestión de Egresados
+
+</p>
+
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
