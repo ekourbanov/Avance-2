@@ -123,23 +123,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (valido) {
 
-            const carrera =
-                crearObjetoCarrera();
+    const carrera = crearObjetoCarrera();
 
-            console.log(
-                "Objeto carrera creado:",
-                carrera
-            );
+    const carreras = obtenerCarreras();
 
-            console.log(
-                "Carreras existentes:",
-                obtenerCarreras()
-            );
+    carreras.push(carrera);
 
-            alert(
-                "El objeto carrera fue creado correctamente."
-            );
-        }
+    guardarCarreras(carreras);
+
+    console.table(carreras);
+
+    alert(
+        "Carrera almacenada correctamente. " +
+        "Total de registros: " +
+        carreras.length
+    );
+}
 
     });
 
