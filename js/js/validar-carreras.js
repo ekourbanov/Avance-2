@@ -120,9 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return {
             nombre: nombre.value.trim(),;
-            codigo: codigo.value.trim(), 
+            codigo: codigo.value.trim() .toUpperCase(), 
             grado: grado.value,
-            creditos: (creditos.value) 
+            creditos: Number(creditos.value) 
         }; 
 
     }   
