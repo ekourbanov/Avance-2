@@ -25,39 +25,57 @@ document.addEventListener("DOMContentLoaded", function () {
         const cantidadCreditos = Number(creditos.value);
 
         if (nombre.value.trim() === "") {
-            errorNombre.textContent =
-                "Debe ingresar el nombre de la carrera.";
+            mostrarError(
+                nombre,
+                errorNombre,
+                "Debe ingresar el nombre de la carrera."
+            );
 
             valido = false;
         } else if (!regexNombre.test(nombre.value.trim())) {
-            errorNombre.textContent =
-                "El nombre debe contener entre 5 y 60 caracteres, únicamente letras y espacios.";
+            mostrarError(
+                nombre,
+                errorNombre,
+                "El nombre debe contener entre 5 y 60 caracteres, únicamente letras y espacios."
+            );
 
             valido = false;
         }
 
         if (codigo.value.trim() === "") {
-            errorCodigo.textContent =
-                "Debe ingresar el código.";
+            mostrarError(
+                codigo,
+                errorCodigo,
+                "Debe ingresar el código."
+            );
 
             valido = false;
         } else if (!regexCodigo.test(codigo.value.trim())) {
-            errorCodigo.textContent =
-                "Formato inválido. Utilice cuatro letras mayúsculas, un guion y tres números. Ejemplo: ISOF-101.";
+            mostrarError(
+                codigo,
+                errorCodigo,
+                "Formato inválido. Utilice cuatro letras mayúsculas, un guion y tres números. Ejemplo: ISOF-101."
+            );
 
             valido = false;
         }
 
         if (grado.value === "") {
-            errorGrado.textContent =
-                "Seleccione un grado académico.";
+            mostrarError(
+                grado,
+                errorGrado,
+                "Seleccione un grado académico."
+            );
 
             valido = false;
         }
 
         if (creditos.value === "") {
-            errorCreditos.textContent =
-                "Debe ingresar la cantidad de créditos.";
+            mostrarError(
+                creditos,
+                errorCreditos,
+                "Debe ingresar la cantidad de créditos."
+            );
 
             valido = false;
         } else if (
@@ -65,8 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
             cantidadCreditos < 1 ||
             cantidadCreditos > 12
         ) {
-            errorCreditos.textContent =
-                "Los créditos deben ser un número entero entre 1 y 12.";
+            mostrarError(
+                creditos,
+                errorCreditos,
+                "Los créditos deben ser un número entero entre 1 y 12."
+            );
 
             valido = false;
         }
