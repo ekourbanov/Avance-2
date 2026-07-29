@@ -109,6 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Confirmación cuando todos los datos son válidos
         if (valido) {
 
+           const carrera = crearobjetoCarrera();
+           
+           console.log("Carrera creada:", carrera);
+        
+           
             alert(
                 "Los datos fueron validados correctamente y están listos para almacenarse."
             );
@@ -123,6 +128,8 @@ document.addEventListener("DOMContentLoaded", function () {
             codigo: codigo.value.trim() .toUpperCase(), 
             grado: grado.value,
             creditos: Number(creditos.value) 
+            fechaRegistro: new Date().toISOString()
+
         }; 
 
     }   
