@@ -21,6 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         limpiarErrores();
 
+        function limpiarFormulario() {
+
+    formulario.reset();
+
+}
+
         let valido = true;
         const cantidadCreditos = Number(creditos.value);
 
