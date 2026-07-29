@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         e.preventDefault();
 
+        limpiarErrores();
+
         let valido = true;
         const cantidadCreditos = Number(creditos.value);
 
@@ -81,6 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
         elementoError.textContent = "";
         campo.classList.remove("input-con-error");
         campo.removeAttribute("aria-invalid");
+    }
+
+    function limpiarErrores() {
+        limpiarError(nombre, errorNombre);
+        limpiarError(codigo, errorCodigo);
+        limpiarError(grado, errorGrado);
+        limpiarError(creditos, errorCreditos);
     }
 
 });
