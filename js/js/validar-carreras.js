@@ -121,7 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return {
             nombre: nombre.value.trim(),;
             codigo: codigo.value.trim(), 
-            
+            grado: grado.value,
+            creditos: (creditos.value) 
         }; 
 
     }   
