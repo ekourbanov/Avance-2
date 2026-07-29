@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const regexCodigo =
         /^[A-Z]{4}-\d{3}$/;
 
-    // Clave que se utilizará para guardar las carreras.
     const CLAVE_CARRERAS = "carreras";
 
     formulario.addEventListener("submit", function (evento) {
@@ -121,27 +120,39 @@ document.addEventListener("DOMContentLoaded", function () {
             valido = false;
         }
 
+        // Almacenar únicamente cuando todo sea válido
         if (valido) {
 
-    const carrera = crearObjetoCarrera();
+            const carrera =
+                crearObjetoCarrera();
 
-    const carreras = obtenerCarreras();
+            const almacenadaCorrectamente =
+                almacenarCarrera(carrera);
 
-    carreras.push(carrera);
+            if (almacenadaCorrectamente) {
 
-    guardarCarreras(carreras);
+                const carrerasGuardadas =
+                    obtenerCarreras();
 
-    console.table(carreras);
+                console.table(carrerasGuardadas);
 
-    alert(
-        "Carrera almacenada correctamente. " +
-        "Total de registros: " +
-        carreras.length
-    );
-}
+                alert(
+                    "Carrera almacenada correctamente. " +
+                    "Total de registros: " +
+                    carrerasGuardadas.length
+                );
+
+            } else {
+
+                alert(
+                    "No fue posible almacenar la carrera."
+                );
+            }
+        }
 
     });
 
+    // Crea el objeto con la información del formulario
     function crearObjetoCarrera() {
 
         return {
@@ -166,14 +177,12 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Recupera el arreglo de carreras de Local Storage.
+    // Recupera todas las carreras almacenadas
     function obtenerCarreras() {
 
         const registros =
             localStorage.getItem(CLAVE_CARRERAS);
 
-        // Si todavía no existen registros,
-        // devuelve un arreglo vacío.
         if (registros === null) {
 
             return [];
@@ -182,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const carreras =
             JSON.parse(registros);
 
-        // Verifica que lo recuperado sea un arreglo.
         if (Array.isArray(carreras)) {
 
             return carreras;
@@ -191,14 +199,37 @@ document.addEventListener("DOMContentLoaded", function () {
         return [];
     }
 
-    // Guarda el arreglo completo de carreras
-    // dentro de Local Storage.
+    // Guarda el arreglo completo en Local Storage
     function guardarCarreras(carreras) {
 
         localStorage.setItem(
             CLAVE_CARRERAS,
             JSON.stringify(carreras)
         );
+    }
+
+    // Agrega una carrera sin eliminar las anteriores
+    function almacenarCarrera(carrera) {
+
+        const carreras =
+            obtenerCarreras();
+
+        carreras.push(carrera);
+
+        guardarCarreras(carreras);
+
+        const carrerasGuardadas =
+            obtenerCarreras();
+
+        const carreraEncontrada =
+            carrerasGuardadas.some(
+                function (registro) {
+
+                    return registro.id === carrera.id;
+                }
+            );
+
+        return carreraEncontrada;
     }
 
     function mostrarError(
