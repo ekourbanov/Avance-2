@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const grado = document.getElementById("gradoAcademico");
     const creditos = document.getElementById("creditosCarrera");
 
-    // Expresiones regulares para validar los formatos.
     const regexNombre = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{5,60}$/;
     const regexCodigo = /^[A-Z]{4}-\d{3}$/;
 
@@ -20,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nombre.value.trim() === "") {
             document.getElementById("errorNombre").textContent =
                 "Debe ingresar el nombre de la carrera.";
+
+            valido = false;
+        } else if (!regexNombre.test(nombre.value.trim())) {
+            document.getElementById("errorNombre").textContent =
+                "El nombre debe contener entre 5 y 60 caracteres, únicamente letras y espacios.";
 
             valido = false;
         }
