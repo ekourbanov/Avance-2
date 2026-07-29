@@ -192,6 +192,16 @@ document.addEventListener("DOMContentLoaded", function () {
         return [];
     }
 
+    // Guarda el arreglo completo de carreras
+    // dentro de Local Storage.
+    function guardarCarreras(carreras) {
+
+        localStorage.setItem(
+            CLAVE_CARRERAS,
+            JSON.stringify(carreras)
+        );
+    }
+
     function mostrarError(
         campo,
         elementoError,
