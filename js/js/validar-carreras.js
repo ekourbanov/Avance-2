@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         let valido = true;
+        const cantidadCreditos = Number(creditos.value);
 
         if (nombre.value.trim() === "") {
             document.getElementById("errorNombre").textContent =
@@ -33,6 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Debe ingresar el código.";
 
             valido = false;
+        } else if (!regexCodigo.test(codigo.value.trim())) {
+            document.getElementById("errorCodigo").textContent =
+                "Formato inválido. Utilice cuatro letras mayúsculas, un guion y tres números. Ejemplo: ISOF-101.";
+
+            valido = false;
         }
 
         if (grado.value === "") {
@@ -45,6 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (creditos.value === "") {
             document.getElementById("errorCreditos").textContent =
                 "Debe ingresar la cantidad de créditos.";
+
+            valido = false;
+        } else if (
+            !Number.isInteger(cantidadCreditos) ||
+            cantidadCreditos < 1 ||
+            cantidadCreditos > 12
+        ) {
+            document.getElementById("errorCreditos").textContent =
+                "Los créditos deben ser un número entero entre 1 y 12.";
 
             valido = false;
         }
