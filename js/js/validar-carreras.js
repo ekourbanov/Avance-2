@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     limpiarErrores();
 
+    nombre.focus();
+
 }
 
         let valido = true;
