@@ -116,6 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+    function crearobjetoCarrera() {
+
+        return {}; 
+
+    }
+
     function mostrarError(campo, elementoError, mensaje) {
 
         elementoError.textContent = mensaje;
@@ -137,5 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         limpiarError(grado, errorGrado);
         limpiarError(creditos, errorCreditos);
     }
+
+
 
 });
