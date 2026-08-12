@@ -2,64 +2,100 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Gestión de Oportunidades Laborales
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/oportunidades.css">
+
+</head>
 
 
-    <Title> Gestión de Oportunidades Laborales</Title>
-
-    <link rel="stylesheet" href="css/oportunidades.css">
-
-    <head> 
-
-<body> 
+<body>
 
 
     <header>
 
-        <h1>Gestión de Oportunidades Laborales</h1>
-        <p>Universidad CENFOTEC</p>
+        <h1>
+            Gestión de Oportunidades Laborales
+        </h1>
+
+        <p>
+            Universidad CENFOTEC
+        </p>
 
     </header>
 
+
     <main>
 
-        <section class=" formulario-section">
 
-            h2>Registrar oportunidad laboral</h2>
+        <section class="formulario-section">
+
+            <h2>
+                Registrar oportunidad laboral
+            </h2>
+
 
             <form id="formOportunidad">
 
+
                 <div class="campo">
-                    <label for="empresa">Empresa:</label>
+
+                    <label for="empresa">
+                        Empresa:
+                    </label>
+
                     <input
                         type="text"
                         id="empresa"
                         name="empresa"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="puesto">Puesto:</label>
+
+                    <label for="puesto">
+                        Puesto:
+                    </label>
+
                     <input
                         type="text"
                         id="puesto"
                         name="puesto"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="descripcion">Descripción:</label>
+
+                    <label for="descripcion">
+                        Descripción:
+                    </label>
+
                     <textarea
                         id="descripcion"
                         name="descripcion"
-                        required
-                    ></textarea>
+                        required>
+                    </textarea>
+
                 </div>
 
+
                 <div class="campo">
+
                     <label for="areaProfesional">
                         Área profesional:
                     </label>
@@ -67,44 +103,86 @@
                     <select
                         id="areaProfesional"
                         name="areaProfesional"
-                        required
-                    >
-                        <option value="">Seleccione un área</option>
-                        <option value="Tecnología">Tecnología</option>
-                        <option value="Diseño">Diseño</option>
-                        <option value="Administración">Administración</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Finanzas">Finanzas</option>
+                        required>
+
+                        <option value="">
+                            Seleccione un área
+                        </option>
+
+                        <option value="Tecnología">
+                            Tecnología
+                        </option>
+
+                        <option value="Diseño">
+                            Diseño
+                        </option>
+
+                        <option value="Administración">
+                            Administración
+                        </option>
+
+                        <option value="Marketing">
+                            Marketing
+                        </option>
+
+                        <option value="Finanzas">
+                            Finanzas
+                        </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="modalidad">Modalidad:</label>
+
+                    <label for="modalidad">
+                        Modalidad:
+                    </label>
 
                     <select
                         id="modalidad"
                         name="modalidad"
-                        required
-                    >
-                        <option value="">Seleccione una modalidad</option>
-                        <option value="Remoto">Remoto</option>
-                        <option value="Presencial">Presencial</option>
-                        <option value="Híbrido">Híbrido</option>
+                        required>
+
+                        <option value="">
+                            Seleccione una modalidad
+                        </option>
+
+                        <option value="Remoto">
+                            Remoto
+                        </option>
+
+                        <option value="Presencial">
+                            Presencial
+                        </option>
+
+                        <option value="Híbrido">
+                            Híbrido
+                        </option>
+
                     </select>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="ubicacion">Ubicación:</label>
+
+                    <label for="ubicacion">
+                        Ubicación:
+                    </label>
 
                     <input
                         type="text"
                         id="ubicacion"
                         name="ubicacion"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
+
                     <label for="fechaPublicacion">
                         Fecha de publicación:
                     </label>
@@ -113,11 +191,13 @@
                         type="date"
                         id="fechaPublicacion"
                         name="fechaPublicacion"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
+
                     <label for="fechaVencimiento">
                         Fecha de vencimiento:
                     </label>
@@ -126,68 +206,104 @@
                         type="date"
                         id="fechaVencimiento"
                         name="fechaVencimiento"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="contacto">Contacto:</label>
+
+                    <label for="contacto">
+                        Contacto:
+                    </label>
 
                     <input
                         type="email"
                         id="contacto"
                         name="contacto"
                         placeholder="correo@empresa.com"
-                        required
-                    >
+                        required>
+
                 </div>
 
+
                 <div class="campo">
-                    <label for="estado">Estado:</label>
+
+                    <label for="estado">
+                        Estado:
+                    </label>
 
                     <select
                         id="estado"
                         name="estado"
-                        required
-                    >
-                        <option value="Activa">Activa</option>
-                        <option value="Inactiva">Inactiva</option>
+                        required>
+
+                        <option value="Activa">
+                            Activa
+                        </option>
+
+                        <option value="Inactiva">
+                            Inactiva
+                        </option>
+
                     </select>
+
                 </div>
+
 
                 <button type="submit">
                     Registrar oportunidad
                 </button>
 
+
             </form>
+
 
             <p id="mensaje"></p>
 
+
         </section>
 
-         <section class="tabla-section">
 
-            <h2>Oportunidades laborales registradas</h2>
+        <section class="tabla-section">
+
+            <h2>
+                Oportunidades laborales registradas
+            </h2>
+
 
             <div class="tabla-contenedor">
 
+
                 <table>
+
 
                     <thead>
 
                         <tr>
+
                             <th>Empresa</th>
+
                             <th>Puesto</th>
+
                             <th>Área</th>
+
                             <th>Modalidad</th>
+
                             <th>Ubicación</th>
+
                             <th>Publicación</th>
+
                             <th>Vencimiento</th>
+
                             <th>Contacto</th>
+
                             <th>Estado</th>
+
                         </tr>
 
                     </thead>
+
 
                     <tbody id="tablaOportunidades">
 
@@ -195,35 +311,35 @@
 
                     </tbody>
 
+
                 </table>
+
 
             </div>
 
+
         </section>
+
 
     </main>
 
 
     <footer>
-        <p>Universidad CENFOTEC</p>
-        <p>Gestión de Oportunidades Laborales</p>
+
+        <p>
+            Universidad CENFOTEC
+        </p>
+
+        <p>
+            Gestión de Oportunidades Laborales
+        </p>
+
     </footer>
 
 
     <script src="js/oportunidades.js"></script>
 
+
 </body>
 
 </html>
-
-
-
-
-
-
-    </main>
-
-
-
-
-</body>
