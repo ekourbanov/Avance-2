@@ -103,3 +103,49 @@ button {
 button:hover {
     background-color: #163a5a;
 }
+/* MENSAJE */
+
+#mensaje {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* TABLA */
+
+.tabla-section {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.tabla-section h2 {
+    margin-bottom: 20px;
+    color: #1f4e79;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #1f4e79;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
