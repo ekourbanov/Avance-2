@@ -24,6 +24,24 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("fechaRegistro");
 
 
+    // Campos opcionales
+
+    const empresaActual =
+        document.getElementById("empresaActual");
+
+    const puestoActual =
+        document.getElementById("puestoActual");
+
+    const areaProfesional =
+        document.getElementById("areaProfesional");
+
+    const linkedin =
+        document.getElementById("linkedin");
+
+    const portafolio =
+        document.getElementById("portafolio");
+
+
     // Mensajes de error
 
     const errorIdentificacion =
@@ -49,6 +67,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const estadoEgresados =
         document.getElementById("estadoEgresados");
+
+
+    // Crear objeto con la información del formulario
+
+    function obtenerDatosEgresado() {
+
+        const egresado = {
+
+            identificacion:
+                identificacion.value.trim(),
+
+            nombreCompleto:
+                nombreCompleto.value.trim(),
+
+            correoElectronico:
+                correoElectronico.value.trim(),
+
+            telefono:
+                telefono.value.trim(),
+
+            fechaRegistro:
+                fechaRegistro.value,
+
+            empresaActual:
+                empresaActual.value.trim(),
+
+            puestoActual:
+                puestoActual.value.trim(),
+
+            areaProfesional:
+                areaProfesional.value.trim(),
+
+            linkedin:
+                linkedin.value.trim(),
+
+            portafolio:
+                portafolio.value.trim()
+
+        };
+
+        return egresado;
+
+    }
 
 
     // Mostrar los egresados en la tabla
@@ -152,11 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 egresados
             );
 
-
-            // Mostrar los registros obtenidos
-
             mostrarEgresados(egresados);
-
 
         } catch (error) {
 
@@ -171,6 +228,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
+
+    // Probar construcción del objeto
+
+    formulario.addEventListener("submit", function (evento) {
+
+        evento.preventDefault();
+
+        const datosEgresado =
+            obtenerDatosEgresado();
+
+        console.log(
+            "Datos preparados para enviar:",
+            datosEgresado
+        );
+
+    });
 
 
     console.log(
