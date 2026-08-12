@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("errorFechaRegistro");
 
 
-    // Elementos para mostrar los registros del GET
+    // Tabla de egresados
 
     const listaEgresados =
         document.getElementById("listaEgresados");
@@ -69,7 +69,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("estadoEgresados");
 
 
-    // Crear objeto con la información del formulario
+    // Estado del registro
+
+    const mensajePerfil =
+        document.getElementById("mensajePerfil");
+
+    const botonGuardar =
+        formulario.querySelector(".boton-guardar");
+
+
+    // Obtener datos del formulario
 
     function obtenerDatosEgresado() {
 
@@ -112,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Limpiar mensajes de error
+    // Limpiar errores
 
     function limpiarErrores() {
 
@@ -125,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Validar formato del correo electrónico
+    // Validar correo
 
     function correoValido(correo) {
 
@@ -137,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Validar campos obligatorios
+    // Validar formulario
 
     function validarDatosEgresado(egresado) {
 
@@ -208,62 +217,63 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Registrar egresado mediante POST
+    // POST - Registrar egresado
 
-        async function registrarEgresado(egresado) {
+    async function registrarEgresado(egresado) {
 
-            const respuesta =
-                await fetch(API_URL, {
+        const respuesta =
+            await fetch(API_URL, {
 
-                    method: "POST",
+                method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                    body:
-                        JSON.stringify(egresado)
+                body:
+                    JSON.stringify(egresado)
 
-                });
-
-
-            if (!respuesta.ok) {
-
-                const detalleError =
-                    await respuesta.text();
-
-                console.error(
-                    "Respuesta del backend:",
-                    detalleError
-                );
-
-                throw new Error(
-                    "No se pudo registrar el egresado"
-                );
-
-            }
+            });
 
 
-            const egresadoRegistrado =
-                await respuesta.json();
+        if (!respuesta.ok) {
 
+            const detalleError =
+                await respuesta.text();
 
-            console.log(
-                "Egresado registrado correctamente:",
-                egresadoRegistrado
+            console.error(
+                "Respuesta del backend:",
+                detalleError
             );
 
-
-            return egresadoRegistrado;
+            throw new Error(
+                "No se pudo registrar el egresado"
+            );
 
         }
 
 
-    // Mostrar los egresados en la tabla
+        const egresadoRegistrado =
+            await respuesta.json();
+
+
+        console.log(
+            "Egresado registrado correctamente:",
+            egresadoRegistrado
+        );
+
+
+        return egresadoRegistrado;
+
+    }
+
+
+    // Mostrar egresados en la tabla
 
     function mostrarEgresados(egresados) {
 
         listaEgresados.innerHTML = "";
+
 
         if (egresados.length === 0) {
 
@@ -322,6 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fila.appendChild(celdaTelefono);
             fila.appendChild(celdaArea);
 
+
             listaEgresados.appendChild(fila);
 
         });
@@ -333,12 +344,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Consultar egresados registrados mediante GET
+    // GET - Consultar egresados
 
     async function consultarEgresados() {
 
         estadoEgresados.textContent =
             "Consultando egresados...";
+
 
         try {
 
@@ -367,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             mostrarEgresados(egresados);
 
+
         } catch (error) {
 
             console.error(
@@ -383,13 +396,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Validar y enviar formulario
+    // Enviar formulario
 
     formulario.addEventListener(
         "submit",
         async function (evento) {
 
             evento.preventDefault();
+
+
+            mensajePerfil.textContent = "";
 
 
             const datosEgresado =
@@ -401,6 +417,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             if (!datosValidos) {
+
+                mensajePerfil.textContent =
+                    "Revise los campos obligatorios.";
+
 
                 console.warn(
                     "El formulario contiene errores."
@@ -417,9 +437,41 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            await registrarEgresado(
-                datosEgresado
-            );
+            mensajePerfil.textContent =
+                "Guardando egresado...";
+
+
+            botonGuardar.disabled = true;
+
+
+            try {
+
+                await registrarEgresado(
+                    datosEgresado
+                );
+
+
+                mensajePerfil.textContent =
+                    "Egresado registrado correctamente.";
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error al registrar egresado:",
+                    error
+                );
+
+
+                mensajePerfil.textContent =
+                    "No se pudo registrar el egresado. Intente nuevamente.";
+
+
+            } finally {
+
+                botonGuardar.disabled = false;
+
+            }
 
         }
     );
@@ -431,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    // Ejecutar GET al cargar la página
+    // Ejecutar GET al abrir la página
 
     consultarEgresados();
 
