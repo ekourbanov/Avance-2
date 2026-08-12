@@ -89,7 +89,7 @@ formulario.addEventListener("submit", async function (event) {
 
     const oportunidad = {
 
-        publicadoPor: "6a6bfd5a5feb7bdc9243b743",
+        publicadoPor: "Emil", // Cambiar por el nombre del usuario que está registrando la oportunidad
 
         empresa: document.getElementById("empresa").value,
 
