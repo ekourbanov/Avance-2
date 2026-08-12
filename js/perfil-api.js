@@ -51,9 +51,60 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("estadoEgresados");
 
 
+    // Consultar egresados registrados en la API
+
+    async function consultarEgresados() {
+
+        estadoEgresados.textContent =
+            "Consultando egresados...";
+
+        try {
+
+            const respuesta =
+                await fetch(API_URL);
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "No se pudieron obtener los egresados"
+                );
+
+            }
+
+            const egresados =
+                await respuesta.json();
+
+            console.log(
+                "Egresados obtenidos:",
+                egresados
+            );
+
+            estadoEgresados.textContent =
+                "Egresados obtenidos correctamente.";
+
+        } catch (error) {
+
+            console.error(
+                "Error al consultar egresados:",
+                error
+            );
+
+            estadoEgresados.textContent =
+                "No se pudieron cargar los egresados.";
+
+        }
+
+    }
+
+
     console.log(
         "Módulo de Perfil cargado. Endpoint:",
         API_URL
     );
+
+
+    // Ejecutar GET al cargar la página
+
+    consultarEgresados();
 
 });
