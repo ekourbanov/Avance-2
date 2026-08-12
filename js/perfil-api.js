@@ -451,8 +451,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
+                // Limpiar formulario después del POST
+
+                formulario.reset();
+
+                limpiarErrores();
+
+
+                // Actualizar automáticamente la tabla
+
+                await consultarEgresados();
+
+
                 mensajePerfil.textContent =
                     "Egresado registrado correctamente.";
+
+
+                // Colocar el cursor nuevamente al inicio
+
+                identificacion.focus();
 
 
             } catch (error) {
