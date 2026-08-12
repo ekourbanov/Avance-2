@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const API_URL = "http://localhost:3000/egresados";
 
+    const CLAVE_LOCAL_STORAGE =
+        "perfilEgresadoTemporal";
+
+
     const formulario =
         document.getElementById("formPerfil");
 
@@ -121,6 +125,111 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // Guardar temporalmente el formulario en LocalStorage
+
+    function guardarBorradorLocal() {
+
+        const datosTemporales =
+            obtenerDatosEgresado();
+
+        localStorage.setItem(
+            CLAVE_LOCAL_STORAGE,
+            JSON.stringify(datosTemporales)
+        );
+
+    }
+
+
+    // Recuperar datos temporales de LocalStorage
+
+    function cargarBorradorLocal() {
+
+        const datosGuardados =
+            localStorage.getItem(
+                CLAVE_LOCAL_STORAGE
+            );
+
+
+        if (datosGuardados === null) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const datos =
+                JSON.parse(datosGuardados);
+
+
+            identificacion.value =
+                datos.identificacion || "";
+
+            nombreCompleto.value =
+                datos.nombreCompleto || "";
+
+            correoElectronico.value =
+                datos.correoElectronico || "";
+
+            telefono.value =
+                datos.telefono || "";
+
+            fechaRegistro.value =
+                datos.fechaRegistro || "";
+
+            empresaActual.value =
+                datos.empresaActual || "";
+
+            puestoActual.value =
+                datos.puestoActual || "";
+
+            areaProfesional.value =
+                datos.areaProfesional || "";
+
+            linkedin.value =
+                datos.linkedin || "";
+
+            portafolio.value =
+                datos.portafolio || "";
+
+
+            mensajePerfil.textContent =
+                "Se recuperaron datos guardados temporalmente.";
+
+
+            console.log(
+                "Datos temporales recuperados desde LocalStorage."
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "No se pudieron recuperar los datos temporales:",
+                error
+            );
+
+            localStorage.removeItem(
+                CLAVE_LOCAL_STORAGE
+            );
+
+        }
+
+    }
+
+
+    // Eliminar respaldo temporal
+
+    function limpiarBorradorLocal() {
+
+        localStorage.removeItem(
+            CLAVE_LOCAL_STORAGE
+        );
+
+    }
+
+
     // Limpiar errores
 
     function limpiarErrores() {
@@ -146,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Validar formulario
+    // Validar campos obligatorios
 
     function validarDatosEgresado(egresado) {
 
@@ -182,7 +291,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             formularioValido = false;
 
-        } else if (!correoValido(egresado.correoElectronico)) {
+        } else if (!correoValido(
+            egresado.correoElectronico
+        )) {
 
             errorCorreoElectronico.textContent =
                 "Ingrese un correo electrónico válido.";
@@ -241,10 +352,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const detalleError =
                 await respuesta.text();
 
+
             console.error(
                 "Respuesta del backend:",
                 detalleError
             );
+
 
             throw new Error(
                 "No se pudo registrar el egresado"
@@ -323,23 +436,41 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.createElement("td");
 
             celdaArea.textContent =
-                egresado.areaProfesional || "No especificada";
+                egresado.areaProfesional ||
+                "No especificada";
 
 
-            fila.appendChild(celdaIdentificacion);
-            fila.appendChild(celdaNombre);
-            fila.appendChild(celdaCorreo);
-            fila.appendChild(celdaTelefono);
-            fila.appendChild(celdaArea);
+            fila.appendChild(
+                celdaIdentificacion
+            );
+
+            fila.appendChild(
+                celdaNombre
+            );
+
+            fila.appendChild(
+                celdaCorreo
+            );
+
+            fila.appendChild(
+                celdaTelefono
+            );
+
+            fila.appendChild(
+                celdaArea
+            );
 
 
-            listaEgresados.appendChild(fila);
+            listaEgresados.appendChild(
+                fila
+            );
 
         });
 
 
         estadoEgresados.textContent =
-            "Total de egresados registrados: " + egresados.length;
+            "Total de egresados registrados: "
+            + egresados.length;
 
     }
 
@@ -377,7 +508,9 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            mostrarEgresados(egresados);
+            mostrarEgresados(
+                egresados
+            );
 
 
         } catch (error) {
@@ -394,6 +527,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+
+
+    // Guardar temporalmente mientras el usuario escribe
+
+    formulario.addEventListener(
+        "input",
+        function () {
+
+            guardarBorradorLocal();
+
+        }
+    );
 
 
     // Enviar formulario
@@ -413,7 +558,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             const datosValidos =
-                validarDatosEgresado(datosEgresado);
+                validarDatosEgresado(
+                    datosEgresado
+                );
 
 
             if (!datosValidos) {
@@ -451,14 +598,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
 
-                // Limpiar formulario después del POST
+                // Limpiar formulario
 
                 formulario.reset();
 
                 limpiarErrores();
 
 
-                // Actualizar automáticamente la tabla
+                // Eliminar datos temporales
+
+                limpiarBorradorLocal();
+
+
+                // Actualizar lista mediante GET
 
                 await consultarEgresados();
 
@@ -466,8 +618,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 mensajePerfil.textContent =
                     "Egresado registrado correctamente.";
 
-
-                // Colocar el cursor nuevamente al inicio
 
                 identificacion.focus();
 
@@ -498,6 +648,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "Módulo de Perfil cargado. Endpoint:",
         API_URL
     );
+
+
+    // Recuperar información temporal
+
+    cargarBorradorLocal();
 
 
     // Ejecutar GET al abrir la página
