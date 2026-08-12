@@ -42,6 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("errorFechaRegistro");
 
 
+    // Elementos para mostrar los registros del GET
+
+    const listaEgresados =
+        document.getElementById("listaEgresados");
+
+    const estadoEgresados =
+        document.getElementById("estadoEgresados");
+
+
     console.log(
         "Módulo de Perfil cargado. Endpoint:",
         API_URL
