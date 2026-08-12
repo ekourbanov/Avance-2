@@ -51,6 +51,79 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("estadoEgresados");
 
 
+    // Mostrar los egresados en la tabla
+
+    function mostrarEgresados(egresados) {
+
+        listaEgresados.innerHTML = "";
+
+        if (egresados.length === 0) {
+
+            estadoEgresados.textContent =
+                "No hay egresados registrados.";
+
+            return;
+
+        }
+
+        egresados.forEach(function (egresado) {
+
+            const fila =
+                document.createElement("tr");
+
+
+            const celdaIdentificacion =
+                document.createElement("td");
+
+            celdaIdentificacion.textContent =
+                egresado.identificacion;
+
+
+            const celdaNombre =
+                document.createElement("td");
+
+            celdaNombre.textContent =
+                egresado.nombreCompleto;
+
+
+            const celdaCorreo =
+                document.createElement("td");
+
+            celdaCorreo.textContent =
+                egresado.correoElectronico;
+
+
+            const celdaTelefono =
+                document.createElement("td");
+
+            celdaTelefono.textContent =
+                egresado.telefono;
+
+
+            const celdaArea =
+                document.createElement("td");
+
+            celdaArea.textContent =
+                egresado.areaProfesional || "No especificada";
+
+
+            fila.appendChild(celdaIdentificacion);
+            fila.appendChild(celdaNombre);
+            fila.appendChild(celdaCorreo);
+            fila.appendChild(celdaTelefono);
+            fila.appendChild(celdaArea);
+
+            listaEgresados.appendChild(fila);
+
+        });
+
+
+        estadoEgresados.textContent =
+            "Total de egresados registrados: " + egresados.length;
+
+    }
+
+
     // Consultar egresados registrados en la API
 
     async function consultarEgresados() {
@@ -79,8 +152,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 egresados
             );
 
-            estadoEgresados.textContent =
-                "Egresados obtenidos correctamente.";
+
+            // Mostrar los registros obtenidos
+
+            mostrarEgresados(egresados);
+
 
         } catch (error) {
 
