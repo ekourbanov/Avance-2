@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* ENCABEZADO */
+
+header {
+    background-color: #1f4e79;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+/* FORMULARIO */
+
+.formulario-section {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.formulario-section h2 {
+    margin-bottom: 20px;
+    color: #1f4e79;
+}
+
+#formOportunidad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.campo textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+/* DESCRIPCIÓN */
+
+.campo:nth-child(3) {
+    grid-column: 1 / 3;
+}
+
+
+/* BOTÓN */
+
+button {
+    grid-column: 1 / 3;
+
+    padding: 12px;
+
+    background-color: #1f4e79;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #163a5a;
+}
+/* MENSAJE */
+
+#mensaje {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* TABLA */
+
+.tabla-section {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.tabla-section h2 {
+    margin-bottom: 20px;
+    color: #1f4e79;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #1f4e79;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 30px;
+    background-color: #1f4e79;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    #formOportunidad {
+        grid-template-columns: 1fr;
+    }
+
+    .campo:nth-child(3) {
+        grid-column: 1;
+    }
+
+    button {
+        grid-column: 1;
+    }
+
+}
