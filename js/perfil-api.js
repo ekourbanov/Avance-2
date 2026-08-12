@@ -112,6 +112,102 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // Limpiar mensajes de error
+
+    function limpiarErrores() {
+
+        errorIdentificacion.textContent = "";
+        errorNombreCompleto.textContent = "";
+        errorCorreoElectronico.textContent = "";
+        errorTelefono.textContent = "";
+        errorFechaRegistro.textContent = "";
+
+    }
+
+
+    // Validar formato del correo electrónico
+
+    function correoValido(correo) {
+
+        const expresionCorreo =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        return expresionCorreo.test(correo);
+
+    }
+
+
+    // Validar campos obligatorios
+
+    function validarDatosEgresado(egresado) {
+
+        limpiarErrores();
+
+        let formularioValido = true;
+
+
+        if (egresado.identificacion === "") {
+
+            errorIdentificacion.textContent =
+                "La identificación es obligatoria.";
+
+            formularioValido = false;
+
+        }
+
+
+        if (egresado.nombreCompleto === "") {
+
+            errorNombreCompleto.textContent =
+                "El nombre completo es obligatorio.";
+
+            formularioValido = false;
+
+        }
+
+
+        if (egresado.correoElectronico === "") {
+
+            errorCorreoElectronico.textContent =
+                "El correo electrónico es obligatorio.";
+
+            formularioValido = false;
+
+        } else if (!correoValido(egresado.correoElectronico)) {
+
+            errorCorreoElectronico.textContent =
+                "Ingrese un correo electrónico válido.";
+
+            formularioValido = false;
+
+        }
+
+
+        if (egresado.telefono === "") {
+
+            errorTelefono.textContent =
+                "El teléfono es obligatorio.";
+
+            formularioValido = false;
+
+        }
+
+
+        if (egresado.fechaRegistro === "") {
+
+            errorFechaRegistro.textContent =
+                "La fecha de registro es obligatoria.";
+
+            formularioValido = false;
+
+        }
+
+
+        return formularioValido;
+
+    }
+
+
     // Mostrar los egresados en la tabla
 
     function mostrarEgresados(egresados) {
@@ -230,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Probar construcción del objeto
+    // Validar formulario antes de enviar
 
     formulario.addEventListener("submit", function (evento) {
 
@@ -239,8 +335,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const datosEgresado =
             obtenerDatosEgresado();
 
+
+        const datosValidos =
+            validarDatosEgresado(datosEgresado);
+
+
+        if (!datosValidos) {
+
+            console.warn(
+                "El formulario contiene errores."
+            );
+
+            return;
+
+        }
+
+
         console.log(
-            "Datos preparados para enviar:",
+            "Datos validados correctamente:",
             datosEgresado
         );
 
