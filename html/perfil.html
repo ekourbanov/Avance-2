@@ -46,30 +46,43 @@
 
             </div>
 
-            <form id="formPerfil" class="formulario-control">
+           <form id="formPerfil" class="formulario-control" novalidate>
 
                 <div class="grupo-formulario">
 
-                    <label for="nombre">
+                    <label for="identificacion">
+                        Identificación
+                    </label>
+
+                    <input
+                        type="text"
+                        id="identificacion"
+                        placeholder="Ej: 123456789">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="nombreCompleto">
                         Nombre Completo
                     </label>
 
                     <input
                         type="text"
-                        id="nombre"
+                        id="nombreCompleto"
                         placeholder="Ingrese su nombre completo">
 
                 </div>
 
                 <div class="grupo-formulario">
 
-                    <label for="correo">
+                    <label for="correoElectronico">
                         Correo Electrónico
                     </label>
 
                     <input
                         type="email"
-                        id="correo"
+                        id="correoElectronico"
                         placeholder="correo@correo.com">
 
                 </div>
@@ -89,77 +102,78 @@
 
                 <div class="grupo-formulario">
 
-                    <label for="direccion">
-                        Dirección
+                    <label for="fechaRegistro">
+                        Fecha de Registro
                     </label>
 
                     <input
-                        type="text"
-                        id="direccion"
-                        placeholder="Ingrese su dirección">
+                        type="date"
+                        id="fechaRegistro">
 
                 </div>
 
                 <div class="grupo-formulario">
 
-                    <label for="carrera">
-                        Carrera
-                    </label>
-
-                    <select id="carrera">
-
-                        <option>Seleccione una carrera</option>
-
-                        <option>Ingeniería del Software</option>
-
-                        <option>Ciberseguridad</option>
-
-                        <option>Diseño Web</option>
-
-                        <option>Administración</option>
-
-                    </select>
-
-                </div>
-
-                <div class="grupo-formulario">
-
-                    <label for="empresa">
+                    <label for="empresaActual">
                         Empresa Actual
                     </label>
 
                     <input
                         type="text"
-                        id="empresa"
+                        id="empresaActual"
                         placeholder="Nombre de la empresa">
 
                 </div>
 
                 <div class="grupo-formulario">
 
-                    <label for="puesto">
-                        Puesto
+                    <label for="puestoActual">
+                        Puesto Actual
                     </label>
 
                     <input
                         type="text"
-                        id="puesto"
-                        placeholder="Puesto actual">
+                        id="puestoActual"
+                        placeholder="Ej: Desarrollador Web">
 
                 </div>
 
                 <div class="grupo-formulario">
 
-                    <label for="descripcion">
-
-                        Descripción Profesional
-
+                    <label for="areaProfesional">
+                        Área Profesional
                     </label>
 
-                    <textarea
-                        id="descripcion"
-                        rows="5"
-                        placeholder="Describa brevemente su experiencia profesional"></textarea>
+                    <input
+                        type="text"
+                        id="areaProfesional"
+                        placeholder="Ej: Tecnología">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="linkedin">
+                        LinkedIn
+                    </label>
+
+                    <input
+                        type="text"
+                        id="linkedin"
+                        placeholder="linkedin.com/in/usuario">
+
+                </div>
+
+                <div class="grupo-formulario">
+
+                    <label for="portafolio">
+                        Portafolio
+                    </label>
+
+                    <input
+                        type="text"
+                        id="portafolio"
+                        placeholder="www.miportafolio.com">
 
                 </div>
 
@@ -169,7 +183,7 @@
                         type="submit"
                         class="boton-guardar">
 
-                        Guardar Información
+                        Guardar Perfil
 
                     </button>
 
