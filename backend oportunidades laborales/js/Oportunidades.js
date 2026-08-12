@@ -32,3 +32,39 @@ async function cargarOportunidades() {
         mensaje.style.color = "red";
     }
 }
+
+// MOSTRAR DATOS EN LA TABLA
+
+
+function mostrarOportunidades(oportunidades) {
+
+    tabla.innerHTML = "";
+
+    oportunidades.forEach(function (oportunidad) {
+
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <td>${oportunidad.empresa || ""}</td>
+
+            <td>${oportunidad.puesto || ""}</td>
+
+            <td>${oportunidad.areaProfesional || ""}</td>
+
+            <td>${oportunidad.modalidad || ""}</td>
+
+            <td>${oportunidad.ubicacion || ""}</td>
+
+            <td>${formatearFecha(oportunidad.fechaPublicacion)}</td>
+
+            <td>${formatearFecha(oportunidad.fechaVencimiento)}</td>
+
+            <td>${oportunidad.contacto || ""}</td>
+
+            <td>${oportunidad.estado || ""}</td>
+        `;
+
+        tabla.appendChild(fila);
+    });
+}
+
