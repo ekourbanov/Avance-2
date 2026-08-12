@@ -169,3 +169,7 @@ formulario.addEventListener("submit", async function (event) {
     }
 
 });
+
+// CARGAR DATOS AL ABRIR LA PÁGINA
+
+cargarOportunidades();
