@@ -68,3 +68,104 @@ function mostrarOportunidades(oportunidades) {
     });
 }
 
+
+// FORMATEAR FECHAS
+
+function formatearFecha(fecha) {
+
+    if (!fecha) {
+        return "";
+    }
+
+    return new Date(fecha).toLocaleDateString("es-CR");
+}
+
+
+// POST - REGISTRAR OPORTUNIDAD
+
+formulario.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const oportunidad = {
+
+        publicadoPor: "6a6bfd5a5feb7bdc9243b743",
+
+        empresa: document.getElementById("empresa").value,
+
+        puesto: document.getElementById("puesto").value,
+
+        descripcion: document.getElementById("descripcion").value,
+
+        areaProfesional:
+            document.getElementById("areaProfesional").value,
+
+        modalidad:
+            document.getElementById("modalidad").value,
+
+        ubicacion:
+            document.getElementById("ubicacion").value,
+
+        fechaPublicacion:
+            document.getElementById("fechaPublicacion").value,
+
+        fechaVencimiento:
+            document.getElementById("fechaVencimiento").value,
+
+        contacto:
+            document.getElementById("contacto").value,
+
+        estado:
+            document.getElementById("estado").value
+    };
+
+
+    try {
+
+        const respuesta = await fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(oportunidad)
+        });
+
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "No se pudo registrar la oportunidad."
+            );
+        }
+
+
+        mensaje.textContent =
+            "¡Oportunidad laboral registrada correctamente!";
+
+        mensaje.style.color = "green";
+
+
+        // Limpiar formulario
+
+        formulario.reset();
+
+
+        // Actualizar tabla
+
+        await cargarOportunidades();
+
+
+    } catch (error) {
+
+        console.error("Error:", error);
+
+        mensaje.textContent =
+            "Error al registrar la oportunidad laboral.";
+
+        mensaje.style.color = "red";
+    }
+
+});
