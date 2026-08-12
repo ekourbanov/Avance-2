@@ -208,6 +208,57 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // Registrar egresado mediante POST
+
+        async function registrarEgresado(egresado) {
+
+            const respuesta =
+                await fetch(API_URL, {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(egresado)
+
+                });
+
+
+            if (!respuesta.ok) {
+
+                const detalleError =
+                    await respuesta.text();
+
+                console.error(
+                    "Respuesta del backend:",
+                    detalleError
+                );
+
+                throw new Error(
+                    "No se pudo registrar el egresado"
+                );
+
+            }
+
+
+            const egresadoRegistrado =
+                await respuesta.json();
+
+
+            console.log(
+                "Egresado registrado correctamente:",
+                egresadoRegistrado
+            );
+
+
+            return egresadoRegistrado;
+
+        }
+
+
     // Mostrar los egresados en la tabla
 
     function mostrarEgresados(egresados) {
@@ -222,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
 
         }
+
 
         egresados.forEach(function (egresado) {
 
@@ -281,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Consultar egresados registrados en la API
+    // Consultar egresados registrados mediante GET
 
     async function consultarEgresados() {
 
@@ -293,6 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const respuesta =
                 await fetch(API_URL);
 
+
             if (!respuesta.ok) {
 
                 throw new Error(
@@ -301,13 +354,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
             const egresados =
                 await respuesta.json();
+
 
             console.log(
                 "Egresados obtenidos:",
                 egresados
             );
+
 
             mostrarEgresados(egresados);
 
@@ -318,6 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 error
             );
 
+
             estadoEgresados.textContent =
                 "No se pudieron cargar los egresados.";
 
@@ -326,37 +383,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Validar formulario antes de enviar
+    // Validar y enviar formulario
 
-    formulario.addEventListener("submit", function (evento) {
+    formulario.addEventListener(
+        "submit",
+        async function (evento) {
 
-        evento.preventDefault();
-
-        const datosEgresado =
-            obtenerDatosEgresado();
-
-
-        const datosValidos =
-            validarDatosEgresado(datosEgresado);
+            evento.preventDefault();
 
 
-        if (!datosValidos) {
+            const datosEgresado =
+                obtenerDatosEgresado();
 
-            console.warn(
-                "El formulario contiene errores."
+
+            const datosValidos =
+                validarDatosEgresado(datosEgresado);
+
+
+            if (!datosValidos) {
+
+                console.warn(
+                    "El formulario contiene errores."
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "Datos validados correctamente:",
+                datosEgresado
             );
 
-            return;
+
+            await registrarEgresado(
+                datosEgresado
+            );
 
         }
-
-
-        console.log(
-            "Datos validados correctamente:",
-            datosEgresado
-        );
-
-    });
+    );
 
 
     console.log(
