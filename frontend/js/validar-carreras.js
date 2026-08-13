@@ -1,293 +1,458 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const formulario = document.getElementById("formCarrera");
+    const API_URL =
+        "http://localhost:3000/carreras";
 
-    const nombre = document.getElementById("nombreCarrera");
-    const codigo = document.getElementById("codigoCarrera");
-    const grado = document.getElementById("gradoAcademico");
-    const creditos = document.getElementById("creditosCarrera");
 
-    const errorNombre = document.getElementById("errorNombre");
-    const errorCodigo = document.getElementById("errorCodigo");
-    const errorGrado = document.getElementById("errorGrado");
-    const errorCreditos = document.getElementById("errorCreditos");
+    // ============================
+    // ELEMENTOS DEL HTML
+    // ============================
 
-    const regexNombre =
-        /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{5,60}$/;
+    const formCarrera =
+        document.getElementById("formCarrera");
 
-    const regexCodigo =
-        /^[A-Z]{4}-\d{3}$/;
+    const tbodyCarreras =
+        document.getElementById("tbody-carreras");
 
-    const CLAVE_CARRERAS = "carreras";
+    const inputNombre =
+        document.getElementById("nombreCarrera");
 
-    formulario.addEventListener("submit", function (evento) {
+    const inputDescripcion =
+        document.getElementById("descripcionCarrera");
 
-        evento.preventDefault();
+    const errorNombre =
+        document.getElementById("errorNombre");
 
-        limpiarErrores();
+    const errorDescripcion =
+        document.getElementById("errorDescripcion");
 
-        let valido = true;
 
-        const cantidadCreditos =
-            Number(creditos.value);
+    // Verificación básica
 
-        const codigoNormalizado =
-            codigo.value.trim().toUpperCase();
-
-        // Validación del nombre
-        if (nombre.value.trim() === "") {
-
-            mostrarError(
-                nombre,
-                errorNombre,
-                "Debe ingresar el nombre de la carrera."
-            );
-
-            valido = false;
-
-        } else if (
-            !regexNombre.test(nombre.value.trim())
-        ) {
-
-            mostrarError(
-                nombre,
-                errorNombre,
-                "El nombre debe contener entre 5 y 60 caracteres, únicamente letras y espacios."
-            );
-
-            valido = false;
-        }
-
-        // Validación del código
-        if (codigoNormalizado === "") {
-
-            mostrarError(
-                codigo,
-                errorCodigo,
-                "Debe ingresar el código de la carrera."
-            );
-
-            valido = false;
-
-        } else if (
-            !regexCodigo.test(codigoNormalizado)
-        ) {
-
-            mostrarError(
-                codigo,
-                errorCodigo,
-                "Formato inválido. Ejemplo: ISOF-101."
-            );
-
-            valido = false;
-        }
-
-        // Validación del grado académico
-        if (grado.value === "") {
-
-            mostrarError(
-                grado,
-                errorGrado,
-                "Debe seleccionar un grado académico."
-            );
-
-            valido = false;
-        }
-
-        // Validación de los créditos
-        if (creditos.value.trim() === "") {
-
-            mostrarError(
-                creditos,
-                errorCreditos,
-                "Debe ingresar la cantidad de créditos."
-            );
-
-            valido = false;
-
-        } else if (
-            !Number.isInteger(cantidadCreditos) ||
-            cantidadCreditos < 1 ||
-            cantidadCreditos > 12
-        ) {
-
-            mostrarError(
-                creditos,
-                errorCreditos,
-                "Los créditos deben ser un número entero entre 1 y 12."
-            );
-
-            valido = false;
-        }
-
-        // Almacenar únicamente cuando todo sea válido
-        if (valido) {
-
-            const carrera =
-                crearObjetoCarrera();
-
-            const almacenadaCorrectamente =
-                almacenarCarrera(carrera);
-
-            if (almacenadaCorrectamente) {
-
-                const carrerasGuardadas =
-                    obtenerCarreras();
-
-                console.table(carrerasGuardadas);
-
-                alert(
-                    "Carrera almacenada correctamente. " +
-                    "Total de registros: " +
-                    carrerasGuardadas.length
-                );
-
-            } else {
-
-                alert(
-                    "No fue posible almacenar la carrera."
-                );
-            }
-        }
-
-    });
-
-    // Crea el objeto con la información del formulario
-    function crearObjetoCarrera() {
-
-        return {
-
-            id: Date.now(),
-
-            nombre:
-                nombre.value.trim(),
-
-            codigo:
-                codigo.value.trim().toUpperCase(),
-
-            grado:
-                grado.value,
-
-            creditos:
-                Number(creditos.value),
-
-            fechaRegistro:
-                new Date().toISOString()
-
-        };
-    }
-
-    // Recupera todas las carreras almacenadas
-    function obtenerCarreras() {
-
-        const registros =
-            localStorage.getItem(CLAVE_CARRERAS);
-
-        if (registros === null) {
-
-            return [];
-        }
-
-        const carreras =
-            JSON.parse(registros);
-
-        if (Array.isArray(carreras)) {
-
-            return carreras;
-        }
-
-        return [];
-    }
-
-    // Guarda el arreglo completo en Local Storage
-    function guardarCarreras(carreras) {
-
-        localStorage.setItem(
-            CLAVE_CARRERAS,
-            JSON.stringify(carreras)
-        );
-    }
-
-    // Agrega una carrera sin eliminar las anteriores
-    function almacenarCarrera(carrera) {
-
-        const carreras =
-            obtenerCarreras();
-
-        carreras.push(carrera);
-
-        guardarCarreras(carreras);
-
-        const carrerasGuardadas =
-            obtenerCarreras();
-
-        const carreraEncontrada =
-            carrerasGuardadas.some(
-                function (registro) {
-
-                    return registro.id === carrera.id;
-                }
-            );
-
-        return carreraEncontrada;
-    }
-
-    function mostrarError(
-        campo,
-        elementoError,
-        mensaje
+    if (
+        !formCarrera ||
+        !tbodyCarreras ||
+        !inputNombre ||
+        !inputDescripcion ||
+        !errorNombre ||
+        !errorDescripcion
     ) {
 
-        elementoError.textContent =
-            mensaje;
-
-        campo.classList.add(
-            "input-con-error"
+        console.error(
+            "No se encontraron todos los elementos necesarios para Gestión de Carreras."
         );
 
-        campo.setAttribute(
-            "aria-invalid",
-            "true"
-        );
+        return;
     }
 
-    function limpiarError(
-        campo,
-        elementoError
-    ) {
 
-        elementoError.textContent = "";
-
-        campo.classList.remove(
-            "input-con-error"
-        );
-
-        campo.removeAttribute(
-            "aria-invalid"
-        );
-    }
+    // ============================
+    // LIMPIAR ERRORES
+    // ============================
 
     function limpiarErrores() {
 
-        limpiarError(
-            nombre,
-            errorNombre
+        errorNombre.textContent = "";
+        errorDescripcion.textContent = "";
+
+        inputNombre.classList.remove(
+            "input-con-error"
         );
 
-        limpiarError(
-            codigo,
-            errorCodigo
+        inputDescripcion.classList.remove(
+            "input-con-error"
         );
 
-        limpiarError(
-            grado,
-            errorGrado
-        );
-
-        limpiarError(
-            creditos,
-            errorCreditos
-        );
     }
+
+
+    // ============================
+    // VALIDACIONES
+    // ============================
+
+    function validarFormulario() {
+
+        limpiarErrores();
+
+        let formularioValido = true;
+
+
+        const nombre =
+            inputNombre.value.trim();
+
+        const descripcion =
+            inputDescripcion.value.trim();
+
+
+        if (nombre === "") {
+
+            errorNombre.textContent =
+                "El nombre de la carrera es obligatorio.";
+
+            inputNombre.classList.add(
+                "input-con-error"
+            );
+
+            formularioValido = false;
+
+        }
+
+
+        if (descripcion === "") {
+
+            errorDescripcion.textContent =
+                "La descripción es obligatoria.";
+
+            inputDescripcion.classList.add(
+                "input-con-error"
+            );
+
+            formularioValido = false;
+
+        }
+
+
+        return formularioValido;
+
+    }
+
+
+    // ============================
+    // MOSTRAR CARRERAS EN TABLA
+    // ============================
+
+    function renderizarTabla(carreras) {
+
+        tbodyCarreras.innerHTML = "";
+
+
+        if (carreras.length === 0) {
+
+            const fila =
+                document.createElement("tr");
+
+            const celda =
+                document.createElement("td");
+
+            celda.colSpan = 2;
+
+            celda.textContent =
+                "No hay carreras registradas.";
+
+            fila.appendChild(celda);
+
+            tbodyCarreras.appendChild(fila);
+
+            return;
+
+        }
+
+
+        carreras.forEach(function (carrera) {
+
+            const fila =
+                document.createElement("tr");
+
+
+            const celdaNombre =
+                document.createElement("td");
+
+            celdaNombre.textContent =
+                carrera.nombre;
+
+
+            const celdaDescripcion =
+                document.createElement("td");
+
+            celdaDescripcion.textContent =
+                carrera.descripcion;
+
+
+            fila.appendChild(
+                celdaNombre
+            );
+
+            fila.appendChild(
+                celdaDescripcion
+            );
+
+
+            tbodyCarreras.appendChild(
+                fila
+            );
+
+        });
+
+    }
+
+
+    // ============================
+    // GET CARRERAS
+    // ============================
+
+    async function obtenerCarreras() {
+
+        try {
+
+            const respuesta =
+                await fetch(API_URL);
+
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    `Error HTTP: ${respuesta.status}`
+                );
+
+            }
+
+
+            const carreras =
+                await respuesta.json();
+
+
+            console.log(
+                "Carreras obtenidas:",
+                carreras
+            );
+
+
+            // Persistencia temporal
+            localStorage.setItem(
+                "carrerasLocal",
+                JSON.stringify(carreras)
+            );
+
+
+            renderizarTabla(
+                carreras
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al obtener las carreras:",
+                error
+            );
+
+
+            // Intentar recuperar datos temporales
+            const datosGuardados =
+                localStorage.getItem(
+                    "carrerasLocal"
+                );
+
+
+            if (datosGuardados) {
+
+                try {
+
+                    const carrerasLocales =
+                        JSON.parse(
+                            datosGuardados
+                        );
+
+
+                    renderizarTabla(
+                        carrerasLocales
+                    );
+
+
+                    console.warn(
+                        "Se muestran datos temporales de LocalStorage."
+                    );
+
+
+                } catch (errorLocal) {
+
+                    console.error(
+                        "Error al recuperar LocalStorage:",
+                        errorLocal
+                    );
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    // ============================
+    // POST CARRERA
+    // ============================
+
+    async function guardarCarrera(evento) {
+
+        evento.preventDefault();
+
+
+        const formularioValido =
+            validarFormulario();
+
+
+        if (!formularioValido) {
+
+            console.warn(
+                "El formulario contiene errores."
+            );
+
+            return;
+
+        }
+
+
+        const nuevaCarrera = {
+
+            nombre:
+                inputNombre.value.trim(),
+
+            descripcion:
+                inputDescripcion.value.trim()
+
+        };
+
+
+        console.log(
+            "Datos que se enviarán:",
+            nuevaCarrera
+        );
+
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    API_URL,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                nuevaCarrera
+                            )
+
+                    }
+                );
+
+
+            if (!respuesta.ok) {
+
+                const detalleError =
+                    await respuesta.text();
+
+
+                console.error(
+                    "Respuesta del backend:",
+                    detalleError
+                );
+
+
+                throw new Error(
+                    `Error HTTP: ${respuesta.status}`
+                );
+
+            }
+
+
+            const carreraRegistrada =
+                await respuesta.json();
+
+
+            console.log(
+                "Carrera registrada:",
+                carreraRegistrada
+            );
+
+
+            // Limpiar formulario
+            formCarrera.reset();
+
+            limpiarErrores();
+
+
+            // Actualizar automáticamente
+            // la tabla mediante GET
+
+            await obtenerCarreras();
+
+
+            alert(
+                "¡Carrera registrada exitosamente!"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Error al guardar la carrera:",
+                error
+            );
+
+
+            alert(
+                "No se pudo registrar la carrera. Verifique que el servidor esté activo."
+            );
+
+        }
+
+    }
+
+
+    // ============================
+    // LIMPIAR ERRORES AL ESCRIBIR
+    // ============================
+
+    inputNombre.addEventListener(
+        "input",
+        function () {
+
+            errorNombre.textContent = "";
+
+            inputNombre.classList.remove(
+                "input-con-error"
+            );
+
+        }
+    );
+
+
+    inputDescripcion.addEventListener(
+        "input",
+        function () {
+
+            errorDescripcion.textContent = "";
+
+            inputDescripcion.classList.remove(
+                "input-con-error"
+            );
+
+        }
+    );
+
+
+    // ============================
+    // EVENTO DEL FORMULARIO
+    // ============================
+
+    formCarrera.addEventListener(
+        "submit",
+        guardarCarrera
+    );
+
+
+    // ============================
+    // GET AL CARGAR LA PÁGINA
+    // ============================
+
+    obtenerCarreras();
 
 });
